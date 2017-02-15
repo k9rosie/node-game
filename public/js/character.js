@@ -1,3 +1,5 @@
+/*global engine*/
+
 engine.character = {};
 
 engine.character.characters = [];
@@ -12,18 +14,26 @@ engine.character.draw = function() {
 	}
 };
 
-engine.character.move = function(character) {
+engine.character.move = function(character, direction) {
+	character.spriteIndex = engine.character.direction(direction);
 	
-}
+};
 
-engine.character.animate = function(character, direction) {
-
-}
+engine.character.animate = function(character, sprites, speed, loop) {
+	var animation = {
+		object: character,
+		sprites: sprites,
+		speed: speed,
+		loop: loop
+	};
+	
+	engine.animation.animations.push(animation);
+};
 
 engine.character.transform = function(character, x, y) {
 	character.x += x;
 	character.y += y;
-}
+};
 
 engine.character.teleport = function(character, x, y) {
 	character.x = x;

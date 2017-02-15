@@ -8,7 +8,8 @@ engine.pixelSize = 16;
 
 engine.start = function() {
 	engine.log("initialized.");
-
+	
+	/* testing */
 	engine.model.parse([
 	{
 		sprites: ['sign'],
@@ -39,8 +40,16 @@ engine.start = function() {
 		y: 2,
 		collidable: false
 	}]);
-
-	engine.character.move(engine.character.characters[0]);
+	
+	engine.animate.animations.push({
+		object: engine.character.characters[0],
+		spriteIndex: 0,
+		sprites: [3, 4, 3, 5],
+		loop: true,
+		speed: 0.1
+	});
+	
+	/* end testing */
 	engine.loop();
 };
 
@@ -55,12 +64,9 @@ engine.loop = function() {
 	}, 1000 / engine.framerate);
 };
 
-var i = 1;
-var x = 2;
-// delta = the amount of time passed since the last update in seconds
+
 engine.update = function(delta) {
-	i = i + (delta * x);
-	engine.character.characters[0].x = i;
+	engine.animate.animate(engine.animate.animations[0], delta);
 };
 
 engine.draw = function() {
