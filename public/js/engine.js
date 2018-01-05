@@ -8,48 +8,8 @@ engine.pixelSize = 16;
 
 engine.start = function() {
 	engine.log("initialized.");
-	
-	/* testing */
-	engine.model.parse([
-	{
-		sprites: ['sign'],
-		spriteIndex: 0,
-		x: 5,
-		y: 4,
-		collidable: false
-	}]);
+	engine.keyboard.hooks.push(engine.player.onKeyPress);
 
-	engine.character.parse([{
-		sprite: 'scientist',
-		direction: 'east',
-		x: 2,
-		y: 4,
-		collidable: false
-	},
-	{
-		sprite: 'scientist',
-		direction: 'east',
-		x: 4,
-		y: 4,
-		collidable: false
-	},
-	{
-		sprite: 'scientist',
-		direction: 'south',
-		x: 4,
-		y: 2,
-		collidable: false
-	}]);
-	
-	engine.animate.animations.push({
-		object: engine.character.characters[0],
-		spriteIndex: 0,
-		sprites: [3, 4, 3, 5],
-		loop: true,
-		speed: 0.1
-	});
-	
-	/* end testing */
 	engine.loop();
 };
 
@@ -66,7 +26,8 @@ engine.loop = function() {
 
 
 engine.update = function(delta) {
-	engine.animate.animate(engine.animate.animations[0], delta);
+    engine.animate.animateAll(delta);
+    engine.animate.transitionAll(delta);
 };
 
 engine.draw = function() {
@@ -78,6 +39,7 @@ engine.draw = function() {
 		engine.map.draw();
 		engine.model.draw();
 		engine.character.draw();
+		engine.player.draw();
 	}
 };
 

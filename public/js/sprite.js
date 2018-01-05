@@ -6,7 +6,6 @@ engine.sprite.store = function (imgSrc) {
 	if (engine.sprite.sprites[imgSrc] !== undefined) {
 		return;
 	}
-	engine.log("saving sprite: " + imgSrc);
 	var sprite = {image: new Image(), loaded: false};
 
 	sprite.image.src = "/static/assets/" + imgSrc;

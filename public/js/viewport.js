@@ -3,6 +3,8 @@ engine.viewport = {};
 engine.viewport.x = 0;
 engine.viewport.y = 0;
 
+engine.viewport.moving = false;
+
 engine.viewport.set = function(x, y) {
 	engine.viewport.x = x;
 	engine.viewport.y = y;
